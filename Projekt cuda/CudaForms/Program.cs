@@ -31,6 +31,7 @@ namespace CudaForms
             CudaContext cntxt = new CudaContext();
 
             CUmodule cumodule = cntxt.LoadModule(@"C:\Users\Michał\Documents\Visual Studio 2013\Projects\cuda\Projekt cuda\Projekt cuda\Debug\kernel.ptx");
+            //CUmodule cumodule = cntxt.LoadModule(@"D:\Grafika\cuda\Projekt cuda\Projekt cuda\Debug\kernel.ptx");
             addWithCuda = new CudaKernel("_Z6kerneliiPi", cumodule, cntxt);
         }
 
