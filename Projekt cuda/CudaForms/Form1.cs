@@ -34,8 +34,9 @@ namespace CudaForms
                     Bitmap map = new Bitmap(s.FileName);
                     if (map != null)
                     {
+                        // TODO: size od pictureBox need be set based on size of the main window
                         pictureBox1.Image = map;
-                        pictureBox1.Size = map.Size;
+                        //pictureBox1.Size = map.Size;
                         pictureBox2.Location = new Point(pictureBox1.Location.X + map.Size.Width + 10, 
                             pictureBox1.Location.Y + map.Size.Height + 10);
                         pictureBox2.Size = map.Size;
@@ -54,9 +55,31 @@ namespace CudaForms
 
         private void button2_Click(object sender, EventArgs e)
         {
+
             // to co trzeba zrobic
-            //ManagedCuda.NPP.NPPNativeMethods.NPPi.MorphologyFilter2D.
-            
+            //ManagedCuda.NPP.NPPNativeMethods.NPPi.MorphologyFilter2D.nppiDilate_16u_C1R(map, 10, map, 10, 3, 1, 1, 1);
+
+            try
+            {
+                Bitmap map = (Bitmap)pictureBox1.Image;
+                if (map != null)
+                {
+                    //got exception when try to allocate new memory
+                    //ManagedCuda.NPP.NPPImage_8uC1 test = new NPPImage_8uC1(map.Width, map.Height);
+                    //comment this part of exception will occur 
+                    ManagedCuda.NPP.NPPImage_16sC1 test = new NPPImage_16sC1(1024, 1024);
+
+                    //test.CopyToHost(map);
+                    //test.CopyToDevice(map);
+                    //pictureBox1.Image = map;
+                }
+            }
+            catch (System.BadImageFormatException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            //ManagedCuda.NPP.NPPNativeMethods.NPPi.MorphologyFilter2D.nppiDilate_16u_C1R(test., 10, test, 10, 3, 1, 1, 1);
         }
     }
 }
