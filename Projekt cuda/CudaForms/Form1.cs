@@ -67,11 +67,19 @@ namespace CudaForms
                     //got exception when try to allocate new memory
                     //ManagedCuda.NPP.NPPImage_8uC1 test = new NPPImage_8uC1(map.Width, map.Height);
                     //comment this part of exception will occur 
-                    ManagedCuda.NPP.NPPImage_8uC3 test = new NPPImage_8uC3(1024, 1024);
+                    ManagedCuda.NPP.NPPImage_8uC3 source = new NPPImage_8uC3(map.Width, map.Height);
+                    ManagedCuda.NPP.NPPImage_8uC3 dest = new NPPImage_8uC3(map.Width, map.Height);
 
-                    //test.CopyToHost(map);
-                    //test.CopyToDevice(map);
-                    //pictureBox1.Image = map;
+                    /////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    // TODO: Add to GUI posiibility from NppiBorderType
+                    // TODO:: Add to GUI Erode 3x3 and Erode border
+                    // TODO:: Add to GUI Dilate 3x3 and Dilate border
+                    /////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    /////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    /////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //source.Erode3x3(dest);
+                    //source.Erode3x3Border(dest, NppiBorderType.Replicate);
+
 
                     /*EXAMPLE
                         //Load an image
