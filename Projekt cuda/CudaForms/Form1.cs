@@ -67,14 +67,36 @@ namespace CudaForms
                     //got exception when try to allocate new memory
                     //ManagedCuda.NPP.NPPImage_8uC1 test = new NPPImage_8uC1(map.Width, map.Height);
                     //comment this part of exception will occur 
-                    ManagedCuda.NPP.NPPImage_16sC1 test = new NPPImage_16sC1(1024, 1024);
+                    ManagedCuda.NPP.NPPImage_8uC3 test = new NPPImage_8uC3(1024, 1024);
 
                     //test.CopyToHost(map);
                     //test.CopyToDevice(map);
                     //pictureBox1.Image = map;
+
+                    /*EXAMPLE
+                        //Load an image
+                        Bitmap bmp = new Bitmap("niceImage.png");
+
+                        //Alloc device memory using NPP images
+                        NPPImage_8uC3 bmp_d = new NPPImage_8uC3(bmp.Width, bmp.Height);
+                        NPPImage_8uC3 bmpDest_d = new NPPImage_8uC3(bmp.Width, bmp.Height);
+
+                        //Copy image to GPU
+                        bmp_d.CopyToDevice(bmp);
+                        //Run a NPP function
+                        bmp_d.FilterGaussBorder(bmpDest_d, MaskSize.Size_5_X_5, NppiBorderType.Replicate);
+                        //Copy result back to host
+                        bmpDest_d.CopyToHost(bmp);
+                        //Use the result
+                        bmp.Save("niceImageFiltered.png");
+                    */
                 }
             }
             catch (System.BadImageFormatException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
