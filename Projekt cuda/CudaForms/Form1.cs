@@ -12,9 +12,9 @@ using ManagedCuda.NPP;
 
 namespace CudaForms
 {
-    public partial class Form1 : Form
+    public partial class MainWIndow : Form
     {
-        public Form1()
+        public MainWIndow()
         {
             InitializeComponent();
         }
@@ -35,11 +35,11 @@ namespace CudaForms
                     if (map != null)
                     {
                         // TODO: size od pictureBox need be set based on size of the main window
-                        pictureBox1.Image = map;
+                        inPictureBox1.Image = map;
                         //pictureBox1.Size = map.Size;
-                        pictureBox2.Location = new Point(pictureBox1.Location.X + map.Size.Width + 10, 
-                            pictureBox1.Location.Y + map.Size.Height + 10);
-                        pictureBox2.Size = map.Size;
+                        outPictureBox2.Location = new Point(inPictureBox1.Location.X + map.Size.Width + 10, 
+                            inPictureBox1.Location.Y + map.Size.Height + 10);
+                        outPictureBox2.Size = map.Size;
                     }
                     else
                     {
@@ -61,9 +61,11 @@ namespace CudaForms
 
             try
             {
-                Bitmap map = (Bitmap)pictureBox1.Image;
+                Bitmap map = new Bitmap (inPictureBox1.Image);
                 if (map != null)
                 {
+                    inPictureBox1.Image = null;
+                    inPictureBox1.Image = map;
                     //got exception when try to allocate new memory
                     //ManagedCuda.NPP.NPPImage_8uC1 test = new NPPImage_8uC1(map.Width, map.Height);
                     //comment this part of exception will occur 
@@ -110,6 +112,52 @@ namespace CudaForms
             }
 
             //ManagedCuda.NPP.NPPNativeMethods.NPPi.MorphologyFilter2D.nppiDilate_16u_C1R(test., 10, test, 10, 3, 1, 1, 1);
+        }
+
+        private void inPictureBox1_Click(object sender, EventArgs e)
+        {
+            //Show full size image
+        }
+
+        private void outPictureBox2_Click(object sender, EventArgs e)
+        {
+            //Show full size image
+        }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void morfComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //every selected morf oper should be run
+        }
+
+        private void inComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //show list of previously selected image
+        }
+
+        private void outComboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //show list of previously morfed image
+        }
+
+        private void Save_Click(object sender, EventArgs e)
+        {
+            //save selected morfed image
+        }
+
+        private void iterNumberTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            //set number of iteration
+            //default 1
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
