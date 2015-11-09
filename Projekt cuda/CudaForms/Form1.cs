@@ -67,10 +67,11 @@ namespace CudaForms
                     inPictureBox1.Image = null;
                     inPictureBox1.Image = map;
                     //got exception when try to allocate new memory
-                    //ManagedCuda.NPP.NPPImage_8uC1 test = new NPPImage_8uC1(map.Width, map.Height);
+                    ManagedCuda.NPP.NPPImage_8uC1 test = new NPPImage_8uC1(map.Width, map.Height);
                     //comment this part of exception will occur 
-                    ManagedCuda.NPP.NPPImage_8uC3 source = new NPPImage_8uC3(map.Width, map.Height);
-                    ManagedCuda.NPP.NPPImage_8uC3 dest = new NPPImage_8uC3(map.Width, map.Height);
+                    NppiSize size = new NppiSize(map.Width, map.Height);
+                    ManagedCuda.NPP.NPPImage_8uC3 source = new NPPImage_8uC3(size);
+                    ManagedCuda.NPP.NPPImage_8uC3 dest = new NPPImage_8uC3(size);
 
                     /////////////////////////////////////////////////////////////////////////////////////////////////////////
                     // TODO: Add to GUI posiibility from NppiBorderType
@@ -79,13 +80,13 @@ namespace CudaForms
                     /////////////////////////////////////////////////////////////////////////////////////////////////////////
                     /////////////////////////////////////////////////////////////////////////////////////////////////////////
                     /////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //source.Erode3x3(dest);
-                    //source.Erode3x3Border(dest, NppiBorderType.Replicate);
+                    source.Erode3x3(dest);
+                    source.Erode3x3Border(dest, NppiBorderType.Replicate);
 
 
-                    /*EXAMPLE
+                    //EXAMPLE
                         //Load an image
-                        Bitmap bmp = new Bitmap("niceImage.png");
+                        Bitmap bmp = new Bitmap(map.Width, map.Height);
 
                         //Alloc device memory using NPP images
                         NPPImage_8uC3 bmp_d = new NPPImage_8uC3(bmp.Width, bmp.Height);
@@ -99,7 +100,7 @@ namespace CudaForms
                         bmpDest_d.CopyToHost(bmp);
                         //Use the result
                         bmp.Save("niceImageFiltered.png");
-                    */
+                    
                 }
             }
             catch (System.BadImageFormatException ex)
