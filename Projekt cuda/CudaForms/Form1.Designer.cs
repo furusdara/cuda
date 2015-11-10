@@ -30,11 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWIndow));
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.OpenButton1 = new System.Windows.Forms.Button();
+            this.OpenButton = new System.Windows.Forms.Button();
             this.inPictureBox1 = new System.Windows.Forms.PictureBox();
             this.outPictureBox2 = new System.Windows.Forms.PictureBox();
-            this.Excecutebutton2 = new System.Windows.Forms.Button();
-            this.morfComboBox1 = new System.Windows.Forms.ComboBox();
+            this.ExcecuteButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.openToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,19 +44,20 @@
             this.dilateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dilateBorderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.inComboBox1 = new System.Windows.Forms.ComboBox();
-            this.outComboBox2 = new System.Windows.Forms.ComboBox();
-            this.Save = new System.Windows.Forms.Button();
-            this.iterNumberTextBox1 = new System.Windows.Forms.TextBox();
-            this.inPicturevScrollBar1 = new System.Windows.Forms.VScrollBar();
-            this.inPicturehScrollBar1 = new System.Windows.Forms.HScrollBar();
-            this.outPicturevScrollBar1 = new System.Windows.Forms.VScrollBar();
-            this.outPicturehScrollBar1 = new System.Windows.Forms.HScrollBar();
-            this.label1 = new System.Windows.Forms.Label();
+            this.MorfListBox = new System.Windows.Forms.CheckedListBox();
+            this.SaveButton = new System.Windows.Forms.Button();
+            this.iterNumberTextBox = new System.Windows.Forms.TextBox();
+            this.label = new System.Windows.Forms.Label();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.radioButton5 = new System.Windows.Forms.RadioButton();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.inPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.outPictureBox2)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -65,20 +65,20 @@
             this.openFileDialog1.Filter = "*.jpg,*.png|";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
-            // OpenButton1
+            // OpenButton
             // 
-            this.OpenButton1.Location = new System.Drawing.Point(25, 54);
-            this.OpenButton1.Margin = new System.Windows.Forms.Padding(4);
-            this.OpenButton1.Name = "OpenButton1";
-            this.OpenButton1.Size = new System.Drawing.Size(116, 28);
-            this.OpenButton1.TabIndex = 0;
-            this.OpenButton1.Text = "Open";
-            this.OpenButton1.UseVisualStyleBackColor = true;
-            this.OpenButton1.Click += new System.EventHandler(this.button1_Click);
+            this.OpenButton.Location = new System.Drawing.Point(25, 54);
+            this.OpenButton.Margin = new System.Windows.Forms.Padding(4);
+            this.OpenButton.Name = "OpenButton";
+            this.OpenButton.Size = new System.Drawing.Size(116, 28);
+            this.OpenButton.TabIndex = 0;
+            this.OpenButton.Text = "Open";
+            this.OpenButton.UseVisualStyleBackColor = true;
+            this.OpenButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // inPictureBox1
             // 
-            this.inPictureBox1.Location = new System.Drawing.Point(149, 54);
+            this.inPictureBox1.Location = new System.Drawing.Point(150, 54);
             this.inPictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.inPictureBox1.MaximumSize = new System.Drawing.Size(512, 512);
             this.inPictureBox1.Name = "inPictureBox1";
@@ -90,7 +90,7 @@
             // 
             // outPictureBox2
             // 
-            this.outPictureBox2.Location = new System.Drawing.Point(697, 54);
+            this.outPictureBox2.Location = new System.Drawing.Point(700, 54);
             this.outPictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.outPictureBox2.MaximumSize = new System.Drawing.Size(512, 512);
             this.outPictureBox2.Name = "outPictureBox2";
@@ -100,31 +100,16 @@
             this.outPictureBox2.TabStop = false;
             this.outPictureBox2.Click += new System.EventHandler(this.outPictureBox2_Click);
             // 
-            // Excecutebutton2
+            // ExcecuteButton
             // 
-            this.Excecutebutton2.Location = new System.Drawing.Point(25, 89);
-            this.Excecutebutton2.Margin = new System.Windows.Forms.Padding(4);
-            this.Excecutebutton2.Name = "Excecutebutton2";
-            this.Excecutebutton2.Size = new System.Drawing.Size(116, 28);
-            this.Excecutebutton2.TabIndex = 3;
-            this.Excecutebutton2.Text = "Execute";
-            this.Excecutebutton2.UseVisualStyleBackColor = true;
-            this.Excecutebutton2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // morfComboBox1
-            // 
-            this.morfComboBox1.FormattingEnabled = true;
-            this.morfComboBox1.Items.AddRange(new object[] {
-            "Erode",
-            "ErodeBorder",
-            "Dilate",
-            "DIlateBorder"});
-            this.morfComboBox1.Location = new System.Drawing.Point(25, 125);
-            this.morfComboBox1.Name = "morfComboBox1";
-            this.morfComboBox1.Size = new System.Drawing.Size(116, 24);
-            this.morfComboBox1.TabIndex = 4;
-            this.morfComboBox1.Text = "NONE";
-            this.morfComboBox1.SelectedIndexChanged += new System.EventHandler(this.morfComboBox1_SelectedIndexChanged);
+            this.ExcecuteButton.Location = new System.Drawing.Point(25, 89);
+            this.ExcecuteButton.Margin = new System.Windows.Forms.Padding(4);
+            this.ExcecuteButton.Name = "ExcecuteButton";
+            this.ExcecuteButton.Size = new System.Drawing.Size(116, 28);
+            this.ExcecuteButton.TabIndex = 3;
+            this.ExcecuteButton.Text = "Execute";
+            this.ExcecuteButton.UseVisualStyleBackColor = true;
+            this.ExcecuteButton.Click += new System.EventHandler(this.button2_Click);
             // 
             // menuStrip1
             // 
@@ -151,13 +136,13 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.openToolStripMenuItem.Text = "Open";
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.closeToolStripMenuItem.Text = "Close";
             // 
             // morfologicToolStripMenuItem
@@ -168,7 +153,7 @@
             this.dilateToolStripMenuItem,
             this.dilateBorderToolStripMenuItem});
             this.morfologicToolStripMenuItem.Name = "morfologicToolStripMenuItem";
-            this.morfologicToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
+            this.morfologicToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.morfologicToolStripMenuItem.Text = "Morfologic";
             // 
             // erodeToolStripMenuItem
@@ -198,97 +183,119 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
-            // checkedListBox1
+            // MorfListBox
             // 
-            this.checkedListBox1.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
+            this.MorfListBox.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.MorfListBox.FormattingEnabled = true;
+            this.MorfListBox.Items.AddRange(new object[] {
             "Erode",
             "ErodeBorder",
             "Dilate",
             "DIlateBorder"});
-            this.checkedListBox1.Location = new System.Drawing.Point(25, 156);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(117, 72);
-            this.checkedListBox1.TabIndex = 7;
-            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
+            this.MorfListBox.Location = new System.Drawing.Point(25, 122);
+            this.MorfListBox.Name = "MorfListBox";
+            this.MorfListBox.Size = new System.Drawing.Size(117, 106);
+            this.MorfListBox.TabIndex = 7;
+            this.MorfListBox.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
-            // inComboBox1
+            // SaveButton
             // 
-            this.inComboBox1.FormattingEnabled = true;
-            this.inComboBox1.Location = new System.Drawing.Point(452, 534);
-            this.inComboBox1.Name = "inComboBox1";
-            this.inComboBox1.Size = new System.Drawing.Size(209, 24);
-            this.inComboBox1.TabIndex = 8;
-            this.inComboBox1.SelectedIndexChanged += new System.EventHandler(this.inComboBox1_SelectedIndexChanged);
+            this.SaveButton.Location = new System.Drawing.Point(25, 234);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(116, 28);
+            this.SaveButton.TabIndex = 10;
+            this.SaveButton.Text = "Save";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.Save_Click);
             // 
-            // outComboBox2
+            // iterNumberTextBox
             // 
-            this.outComboBox2.FormattingEnabled = true;
-            this.outComboBox2.Location = new System.Drawing.Point(1000, 534);
-            this.outComboBox2.Name = "outComboBox2";
-            this.outComboBox2.Size = new System.Drawing.Size(209, 24);
-            this.outComboBox2.TabIndex = 9;
-            this.outComboBox2.SelectedIndexChanged += new System.EventHandler(this.outComboBox2_SelectedIndexChanged);
+            this.iterNumberTextBox.Location = new System.Drawing.Point(25, 268);
+            this.iterNumberTextBox.Name = "iterNumberTextBox";
+            this.iterNumberTextBox.Size = new System.Drawing.Size(116, 22);
+            this.iterNumberTextBox.TabIndex = 11;
+            this.iterNumberTextBox.TextChanged += new System.EventHandler(this.iterNumberTextBox1_TextChanged);
             // 
-            // Save
+            // label
             // 
-            this.Save.Location = new System.Drawing.Point(25, 234);
-            this.Save.Name = "Save";
-            this.Save.Size = new System.Drawing.Size(116, 28);
-            this.Save.TabIndex = 10;
-            this.Save.Text = "Save";
-            this.Save.UseVisualStyleBackColor = true;
-            this.Save.Click += new System.EventHandler(this.Save_Click);
+            this.label.AutoSize = true;
+            this.label.Location = new System.Drawing.Point(38, 293);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(91, 17);
+            this.label.TabIndex = 16;
+            this.label.Text = "Set Iterations";
+            this.label.Click += new System.EventHandler(this.label1_Click);
             // 
-            // iterNumberTextBox1
+            // radioButton1
             // 
-            this.iterNumberTextBox1.Location = new System.Drawing.Point(25, 268);
-            this.iterNumberTextBox1.Name = "iterNumberTextBox1";
-            this.iterNumberTextBox1.Size = new System.Drawing.Size(116, 22);
-            this.iterNumberTextBox1.TabIndex = 11;
-            this.iterNumberTextBox1.TextChanged += new System.EventHandler(this.iterNumberTextBox1_TextChanged);
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(3, 3);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(63, 21);
+            this.radioButton1.TabIndex = 18;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "None";
+            this.radioButton1.UseVisualStyleBackColor = true;
             // 
-            // inPicturevScrollBar1
+            // radioButton2
             // 
-            this.inPicturevScrollBar1.Location = new System.Drawing.Point(665, 54);
-            this.inPicturevScrollBar1.Name = "inPicturevScrollBar1";
-            this.inPicturevScrollBar1.Size = new System.Drawing.Size(28, 422);
-            this.inPicturevScrollBar1.TabIndex = 12;
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(3, 30);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(85, 21);
+            this.radioButton2.TabIndex = 19;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Constant";
+            this.radioButton2.UseVisualStyleBackColor = true;
             // 
-            // inPicturehScrollBar1
+            // radioButton3
             // 
-            this.inPicturehScrollBar1.Location = new System.Drawing.Point(149, 496);
-            this.inPicturehScrollBar1.Name = "inPicturehScrollBar1";
-            this.inPicturehScrollBar1.Size = new System.Drawing.Size(512, 21);
-            this.inPicturehScrollBar1.TabIndex = 13;
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(3, 57);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(88, 21);
+            this.radioButton3.TabIndex = 20;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "Replicate";
+            this.radioButton3.UseVisualStyleBackColor = true;
             // 
-            // outPicturevScrollBar1
+            // radioButton4
             // 
-            this.outPicturevScrollBar1.Location = new System.Drawing.Point(1221, 54);
-            this.outPicturevScrollBar1.Name = "outPicturevScrollBar1";
-            this.outPicturevScrollBar1.Size = new System.Drawing.Size(28, 422);
-            this.outPicturevScrollBar1.TabIndex = 14;
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Location = new System.Drawing.Point(3, 84);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(63, 21);
+            this.radioButton4.TabIndex = 21;
+            this.radioButton4.TabStop = true;
+            this.radioButton4.Text = "Wrap";
+            this.radioButton4.UseVisualStyleBackColor = true;
             // 
-            // outPicturehScrollBar1
+            // radioButton5
             // 
-            this.outPicturehScrollBar1.Location = new System.Drawing.Point(697, 496);
-            this.outPicturehScrollBar1.Name = "outPicturehScrollBar1";
-            this.outPicturehScrollBar1.Size = new System.Drawing.Size(512, 21);
-            this.outPicturehScrollBar1.TabIndex = 15;
+            this.radioButton5.AutoSize = true;
+            this.radioButton5.Location = new System.Drawing.Point(3, 111);
+            this.radioButton5.Name = "radioButton5";
+            this.radioButton5.Size = new System.Drawing.Size(66, 21);
+            this.radioButton5.TabIndex = 22;
+            this.radioButton5.TabStop = true;
+            this.radioButton5.Text = "Mirror";
+            this.radioButton5.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // panel1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(38, 293);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 17);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "Set Iterations";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.panel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel1.Controls.Add(this.radioButton1);
+            this.panel1.Controls.Add(this.radioButton5);
+            this.panel1.Controls.Add(this.radioButton2);
+            this.panel1.Controls.Add(this.radioButton4);
+            this.panel1.Controls.Add(this.radioButton3);
+            this.panel1.Location = new System.Drawing.Point(25, 313);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(117, 137);
+            this.panel1.TabIndex = 23;
             // 
             // MainWIndow
             // 
@@ -296,22 +303,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1259, 649);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.outPicturehScrollBar1);
-            this.Controls.Add(this.outPicturevScrollBar1);
-            this.Controls.Add(this.inPicturehScrollBar1);
-            this.Controls.Add(this.inPicturevScrollBar1);
-            this.Controls.Add(this.iterNumberTextBox1);
-            this.Controls.Add(this.Save);
-            this.Controls.Add(this.outComboBox2);
-            this.Controls.Add(this.inComboBox1);
-            this.Controls.Add(this.checkedListBox1);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.label);
+            this.Controls.Add(this.iterNumberTextBox);
+            this.Controls.Add(this.SaveButton);
+            this.Controls.Add(this.MorfListBox);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.morfComboBox1);
-            this.Controls.Add(this.Excecutebutton2);
+            this.Controls.Add(this.ExcecuteButton);
             this.Controls.Add(this.outPictureBox2);
             this.Controls.Add(this.inPictureBox1);
-            this.Controls.Add(this.OpenButton1);
+            this.Controls.Add(this.OpenButton);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
@@ -322,6 +323,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.outPictureBox2)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -330,18 +333,15 @@
         #endregion
 
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Button OpenButton1;
+        private System.Windows.Forms.Button OpenButton;
         private System.Windows.Forms.PictureBox inPictureBox1;
         private System.Windows.Forms.PictureBox outPictureBox2;
-        private System.Windows.Forms.Button Excecutebutton2;
-        private System.Windows.Forms.ComboBox morfComboBox1;
+        private System.Windows.Forms.Button ExcecuteButton;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem1;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
-        private System.Windows.Forms.ComboBox inComboBox1;
-        private System.Windows.Forms.ComboBox outComboBox2;
-        private System.Windows.Forms.Button Save;
-        private System.Windows.Forms.TextBox iterNumberTextBox1;
+        private System.Windows.Forms.CheckedListBox MorfListBox;
+        private System.Windows.Forms.Button SaveButton;
+        private System.Windows.Forms.TextBox iterNumberTextBox;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem morfologicToolStripMenuItem;
@@ -350,11 +350,13 @@
         private System.Windows.Forms.ToolStripMenuItem erodeBorderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dilateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dilateBorderToolStripMenuItem;
-        private System.Windows.Forms.VScrollBar inPicturevScrollBar1;
-        private System.Windows.Forms.HScrollBar inPicturehScrollBar1;
-        private System.Windows.Forms.VScrollBar outPicturevScrollBar1;
-        private System.Windows.Forms.HScrollBar outPicturehScrollBar1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton radioButton5;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

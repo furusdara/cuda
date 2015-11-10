@@ -37,8 +37,8 @@ namespace CudaForms
                         // TODO: size od pictureBox need be set based on size of the main window
                         inPictureBox1.Image = map;
                         //pictureBox1.Size = map.Size;
-                        outPictureBox2.Location = new Point(inPictureBox1.Location.X + map.Size.Width + 10, 
-                            inPictureBox1.Location.Y + map.Size.Height + 10);
+                        //outPictureBox2.Location = new Point(inPictureBox1.Location.X + map.Size.Width + 10, 
+                        //    inPictureBox1.Location.Y + map.Size.Height + 10);
                         outPictureBox2.Size = map.Size;
                     }
                     else
@@ -74,8 +74,8 @@ namespace CudaForms
                     ManagedCuda.NPP.NPPImage_8uC3 dest = new NPPImage_8uC3(size);
                     /////////////////////////////////////////////////////////////////////////////////////////////////////////
                     // TODO: Add to GUI posiibility from NppiBorderType
-                    // TODO:: Add to GUI Erode 3x3 and Erode border
-                    // TODO:: Add to GUI Dilate 3x3 and Dilate border
+                    // TODO:: Add to GUI Erode 3x3 and Erode border //ok
+                    // TODO:: Add to GUI Dilate 3x3 and Dilate border //ok
                     /////////////////////////////////////////////////////////////////////////////////////////////////////////
                     /////////////////////////////////////////////////////////////////////////////////////////////////////////
                     /////////////////////////////////////////////////////////////////////////////////////////////////////////
