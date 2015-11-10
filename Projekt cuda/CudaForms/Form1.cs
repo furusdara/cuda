@@ -72,7 +72,6 @@ namespace CudaForms
                     NppiSize size = new NppiSize(map.Width, map.Height);
                     ManagedCuda.NPP.NPPImage_8uC3 source = new NPPImage_8uC3(size);
                     ManagedCuda.NPP.NPPImage_8uC3 dest = new NPPImage_8uC3(size);
-
                     /////////////////////////////////////////////////////////////////////////////////////////////////////////
                     // TODO: Add to GUI posiibility from NppiBorderType
                     // TODO:: Add to GUI Erode 3x3 and Erode border
@@ -80,13 +79,48 @@ namespace CudaForms
                     /////////////////////////////////////////////////////////////////////////////////////////////////////////
                     /////////////////////////////////////////////////////////////////////////////////////////////////////////
                     /////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    
+                    //Implement for GUI 3 below method
+                    //copy image
+                    source.CopyToDevice(map);
+
+                    /*
+                    //erode
                     source.Erode3x3(dest);
+                    Bitmap mapd1 = new Bitmap(map.Width,map.Height);
+                    dest.CopyToHost(mapd1);
+                    outPictureBox2.Image = mapd1;
+                    mapd1.Save("Eroded");
+                     * */
+
+                    /*
                     source.Erode3x3Border(dest, NppiBorderType.Replicate);
+                    Bitmap mapd2 = new Bitmap(map.Width, map.Height);
+                    dest.CopyToHost(mapd2);
+                    outPictureBox2.Image = mapd2;
+                    mapd2.Save("ErodedBOrder");
+                     * */
+
+                    /*
+                    source.Dilate3x3(dest);
+                    Bitmap mapd2 = new Bitmap(map.Width, map.Height);
+                    dest.CopyToHost(mapd2);
+                    outPictureBox2.Image = mapd2;
+                    mapd2.Save("DIlate");
+                    */
+
+                    source.Dilate3x3Border(dest, NppiBorderType.Replicate);
+                    Bitmap mapd2 = new Bitmap(map.Width, map.Height);
+                    dest.CopyToHost(mapd2);
+                    outPictureBox2.Image = mapd2;
+                    mapd2.Save("DIlateBorder");
 
 
                     //EXAMPLE
+                    /*
                         //Load an image
                         Bitmap bmp = new Bitmap(map.Width, map.Height);
+                        bmp = map;
 
                         //Alloc device memory using NPP images
                         NPPImage_8uC3 bmp_d = new NPPImage_8uC3(bmp.Width, bmp.Height);
@@ -97,10 +131,11 @@ namespace CudaForms
                         //Run a NPP function
                         bmp_d.FilterGaussBorder(bmpDest_d, MaskSize.Size_5_X_5, NppiBorderType.Replicate);
                         //Copy result back to host
-                        bmpDest_d.CopyToHost(bmp);
+                        bmpDest_d.CopyToHost(mapd);
+                        outPictureBox2.Image = mapd;
                         //Use the result
                         bmp.Save("niceImageFiltered.png");
-                    
+                    */
                 }
             }
             catch (System.BadImageFormatException ex)

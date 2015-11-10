@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Projekt cuda", "Projekt cuda\Projekt cuda.vcxproj", "{7049C511-6ABF-426E-8ADA-B5443E3FF29D}"
 EndProject
@@ -26,8 +26,8 @@ Global
 		{7049C511-6ABF-426E-8ADA-B5443E3FF29D}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{7049C511-6ABF-426E-8ADA-B5443E3FF29D}.Debug|ARM.ActiveCfg = Debug|x64
 		{7049C511-6ABF-426E-8ADA-B5443E3FF29D}.Debug|ARM.Build.0 = Debug|x64
-		{7049C511-6ABF-426E-8ADA-B5443E3FF29D}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{7049C511-6ABF-426E-8ADA-B5443E3FF29D}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{7049C511-6ABF-426E-8ADA-B5443E3FF29D}.Debug|Mixed Platforms.ActiveCfg = Debug|x64
+		{7049C511-6ABF-426E-8ADA-B5443E3FF29D}.Debug|Mixed Platforms.Build.0 = Debug|x64
 		{7049C511-6ABF-426E-8ADA-B5443E3FF29D}.Debug|Win32.ActiveCfg = Debug|Win32
 		{7049C511-6ABF-426E-8ADA-B5443E3FF29D}.Debug|Win32.Build.0 = Debug|Win32
 		{7049C511-6ABF-426E-8ADA-B5443E3FF29D}.Debug|x64.ActiveCfg = Debug|x64
@@ -48,8 +48,8 @@ Global
 		{43C6ADCA-A3BD-4142-AFC7-357FDAD13F80}.Debug|Any CPU.Build.0 = Debug|x64
 		{43C6ADCA-A3BD-4142-AFC7-357FDAD13F80}.Debug|ARM.ActiveCfg = Debug|Any CPU
 		{43C6ADCA-A3BD-4142-AFC7-357FDAD13F80}.Debug|ARM.Build.0 = Debug|Any CPU
-		{43C6ADCA-A3BD-4142-AFC7-357FDAD13F80}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{43C6ADCA-A3BD-4142-AFC7-357FDAD13F80}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{43C6ADCA-A3BD-4142-AFC7-357FDAD13F80}.Debug|Mixed Platforms.ActiveCfg = Debug|x64
+		{43C6ADCA-A3BD-4142-AFC7-357FDAD13F80}.Debug|Mixed Platforms.Build.0 = Debug|x64
 		{43C6ADCA-A3BD-4142-AFC7-357FDAD13F80}.Debug|Win32.ActiveCfg = Debug|Any CPU
 		{43C6ADCA-A3BD-4142-AFC7-357FDAD13F80}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{43C6ADCA-A3BD-4142-AFC7-357FDAD13F80}.Debug|x64.Build.0 = Debug|Any CPU

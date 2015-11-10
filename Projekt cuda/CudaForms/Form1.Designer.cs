@@ -37,19 +37,19 @@
             this.morfComboBox1 = new System.Windows.Forms.ComboBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.openToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.morfologicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.erodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.erodeBorderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dilateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dilateBorderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.inComboBox1 = new System.Windows.Forms.ComboBox();
             this.outComboBox2 = new System.Windows.Forms.ComboBox();
             this.Save = new System.Windows.Forms.Button();
             this.iterNumberTextBox1 = new System.Windows.Forms.TextBox();
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.morfologicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.erodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dilateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.erodeBorderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dilateBorderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inPicturevScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.inPicturehScrollBar1 = new System.Windows.Forms.HScrollBar();
             this.outPicturevScrollBar1 = new System.Windows.Forms.VScrollBar();
@@ -148,6 +148,59 @@
             this.openToolStripMenuItem1.Size = new System.Drawing.Size(58, 24);
             this.openToolStripMenuItem1.Text = "Menu";
             // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
+            this.openToolStripMenuItem.Text = "Open";
+            // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
+            this.closeToolStripMenuItem.Text = "Close";
+            // 
+            // morfologicToolStripMenuItem
+            // 
+            this.morfologicToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.erodeToolStripMenuItem,
+            this.erodeBorderToolStripMenuItem,
+            this.dilateToolStripMenuItem,
+            this.dilateBorderToolStripMenuItem});
+            this.morfologicToolStripMenuItem.Name = "morfologicToolStripMenuItem";
+            this.morfologicToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
+            this.morfologicToolStripMenuItem.Text = "Morfologic";
+            // 
+            // erodeToolStripMenuItem
+            // 
+            this.erodeToolStripMenuItem.Name = "erodeToolStripMenuItem";
+            this.erodeToolStripMenuItem.Size = new System.Drawing.Size(169, 26);
+            this.erodeToolStripMenuItem.Text = "Erode";
+            // 
+            // erodeBorderToolStripMenuItem
+            // 
+            this.erodeBorderToolStripMenuItem.Name = "erodeBorderToolStripMenuItem";
+            this.erodeBorderToolStripMenuItem.Size = new System.Drawing.Size(169, 26);
+            this.erodeBorderToolStripMenuItem.Text = "ErodeBorder";
+            // 
+            // dilateToolStripMenuItem
+            // 
+            this.dilateToolStripMenuItem.Name = "dilateToolStripMenuItem";
+            this.dilateToolStripMenuItem.Size = new System.Drawing.Size(169, 26);
+            this.dilateToolStripMenuItem.Text = "Dilate";
+            // 
+            // dilateBorderToolStripMenuItem
+            // 
+            this.dilateBorderToolStripMenuItem.Name = "dilateBorderToolStripMenuItem";
+            this.dilateBorderToolStripMenuItem.Size = new System.Drawing.Size(169, 26);
+            this.dilateBorderToolStripMenuItem.Text = "DilateBorder";
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
+            this.exitToolStripMenuItem.Text = "Exit";
+            // 
             // checkedListBox1
             // 
             this.checkedListBox1.BackColor = System.Drawing.SystemColors.InactiveCaption;
@@ -198,59 +251,6 @@
             this.iterNumberTextBox1.Size = new System.Drawing.Size(116, 22);
             this.iterNumberTextBox1.TabIndex = 11;
             this.iterNumberTextBox1.TextChanged += new System.EventHandler(this.iterNumberTextBox1_TextChanged);
-            // 
-            // openToolStripMenuItem
-            // 
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.openToolStripMenuItem.Text = "Open";
-            // 
-            // closeToolStripMenuItem
-            // 
-            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.closeToolStripMenuItem.Text = "Close";
-            // 
-            // morfologicToolStripMenuItem
-            // 
-            this.morfologicToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.erodeToolStripMenuItem,
-            this.erodeBorderToolStripMenuItem,
-            this.dilateToolStripMenuItem,
-            this.dilateBorderToolStripMenuItem});
-            this.morfologicToolStripMenuItem.Name = "morfologicToolStripMenuItem";
-            this.morfologicToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.morfologicToolStripMenuItem.Text = "Morfologic";
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.exitToolStripMenuItem.Text = "Exit";
-            // 
-            // erodeToolStripMenuItem
-            // 
-            this.erodeToolStripMenuItem.Name = "erodeToolStripMenuItem";
-            this.erodeToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.erodeToolStripMenuItem.Text = "Erode";
-            // 
-            // dilateToolStripMenuItem
-            // 
-            this.dilateToolStripMenuItem.Name = "dilateToolStripMenuItem";
-            this.dilateToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.dilateToolStripMenuItem.Text = "Dilate";
-            // 
-            // erodeBorderToolStripMenuItem
-            // 
-            this.erodeBorderToolStripMenuItem.Name = "erodeBorderToolStripMenuItem";
-            this.erodeBorderToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.erodeBorderToolStripMenuItem.Text = "ErodeBorder";
-            // 
-            // dilateBorderToolStripMenuItem
-            // 
-            this.dilateBorderToolStripMenuItem.Name = "dilateBorderToolStripMenuItem";
-            this.dilateBorderToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.dilateBorderToolStripMenuItem.Text = "DilateBorder";
             // 
             // inPicturevScrollBar1
             // 
