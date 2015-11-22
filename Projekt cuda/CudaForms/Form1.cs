@@ -32,6 +32,8 @@ namespace CudaForms
                 try
                 {
                     Bitmap map = new Bitmap(s.FileName);
+                    label.Text = map.Width.ToString() + "x" + map.Height.ToString();
+                    
                     if (map != null)
                     {
                         // TODO: size od pictureBox need be set based on size of the main window
@@ -39,7 +41,7 @@ namespace CudaForms
                         //pictureBox1.Size = map.Size;
                         //outPictureBox2.Location = new Point(inPictureBox1.Location.X + map.Size.Width + 10, 
                         //    inPictureBox1.Location.Y + map.Size.Height + 10);
-                        outPictureBox2.Size = map.Size;
+                        //outPictureBox2.Size = map.Size;
                     }
                     else
                     {
@@ -66,22 +68,12 @@ namespace CudaForms
                 {
                     inPictureBox1.Image = null;
                     inPictureBox1.Image = map;
-                    //got exception when try to allocate new memory
-                    ManagedCuda.NPP.NPPImage_8uC1 test = new NPPImage_8uC1(map.Width, map.Height);
-                    //comment this part of exception will occur 
+
                     NppiSize size = new NppiSize(map.Width, map.Height);
+
                     ManagedCuda.NPP.NPPImage_8uC3 source = new NPPImage_8uC3(size);
                     ManagedCuda.NPP.NPPImage_8uC3 dest = new NPPImage_8uC3(size);
-                    /////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    // TODO: Add to GUI posiibility from NppiBorderType
-                    // TODO:: Add to GUI Erode 3x3 and Erode border //ok
-                    // TODO:: Add to GUI Dilate 3x3 and Dilate border //ok
-                    /////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    /////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    /////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    
-                    //Implement for GUI 3 below method
-                    //copy image
+
                     source.CopyToDevice(map);
 
                     /*
@@ -109,12 +101,33 @@ namespace CudaForms
                     mapd2.Save("DIlate");
                     */
 
+                    
                     source.Dilate3x3Border(dest, NppiBorderType.Replicate);
                     Bitmap mapd2 = new Bitmap(map.Width, map.Height);
                     dest.CopyToHost(mapd2);
                     outPictureBox2.Image = mapd2;
-                    mapd2.Save("DIlateBorder");
+                    label.Text = mapd2.Width.ToString() + " xx " + mapd2.Height.ToString();
+                    label.Text = source.SizeRoi.ToString();
+                    mapd2.Save("DIlateBorder.jpg");
+                    
 
+                    ///////////////////////////////////////////////////////////////////////////////////////////////
+                    //still got exceptions
+                    /*
+                    ManagedCuda.CudaDeviceVariable<byte> test = new ManagedCuda.CudaDeviceVariable<byte>(256);
+                    NppiSize size1 = new NppiSize(map.Width, map.Height);
+                    NppiPoint point1 = new NppiPoint();
+                    source.DilateBorder(dest, test, size1, point1, NppiBorderType.Replicate);
+
+                    Bitmap mapd2 = new Bitmap(map.Width, map.Height);
+                    dest.CopyToHost(mapd2);
+                    outPictureBox2.Image = mapd2;
+                    label.Text = mapd2.Width.ToString() + " xx " + mapd2.Height.ToString();
+                    label.Text = source.SizeRoi.ToString();
+                    mapd2.Save("DIlateBorder.jpg");
+                     * */
+                    ///////////////////////////////////////////////////////////////////////////////////////////////
+                    
 
                     //EXAMPLE
                     /*
@@ -182,7 +195,9 @@ namespace CudaForms
 
         private void Save_Click(object sender, EventArgs e)
         {
-            //save selected morfed image
+            //exceptions
+            //add messageBox wiht succes info
+            this.outPictureBox2.Image.Save(DateTime.Now.ToString() + "png");
         }
 
         private void iterNumberTextBox1_TextChanged(object sender, EventArgs e)
@@ -194,6 +209,27 @@ namespace CudaForms
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.button1_Click(sender, e);
+        }
+
+        private void excecuteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.button2_Click(sender, e);
+        }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.inPictureBox1.Image = null;
+            this.outPictureBox2.Image = null;
         }
     }
 }

@@ -23,7 +23,6 @@ namespace CudaForms
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainWIndow());
-
         }
 
         public static void InitKernels()
@@ -35,6 +34,7 @@ namespace CudaForms
             addWithCuda = new CudaKernel("_Z6kerneliiPi", cumodule, cntxt);
         }
 
+        //test function for cuda kernel //not used
         public static Func<int, int, int> cudaAdd = (a, b) =>
         {
             // init output parameters

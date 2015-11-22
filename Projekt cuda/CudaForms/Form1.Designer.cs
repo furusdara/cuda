@@ -44,7 +44,6 @@
             this.dilateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dilateBorderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MorfListBox = new System.Windows.Forms.CheckedListBox();
             this.SaveButton = new System.Windows.Forms.Button();
             this.iterNumberTextBox = new System.Windows.Forms.TextBox();
             this.label = new System.Windows.Forms.Label();
@@ -52,8 +51,13 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.excecuteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.inPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.outPictureBox2)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -67,10 +71,10 @@
             // 
             // OpenButton
             // 
-            this.OpenButton.Location = new System.Drawing.Point(25, 54);
+            this.OpenButton.Location = new System.Drawing.Point(3, 54);
             this.OpenButton.Margin = new System.Windows.Forms.Padding(4);
             this.OpenButton.Name = "OpenButton";
-            this.OpenButton.Size = new System.Drawing.Size(116, 28);
+            this.OpenButton.Size = new System.Drawing.Size(138, 28);
             this.OpenButton.TabIndex = 0;
             this.OpenButton.Text = "Open";
             this.OpenButton.UseVisualStyleBackColor = true;
@@ -78,23 +82,25 @@
             // 
             // inPictureBox1
             // 
+            this.inPictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.inPictureBox1.Location = new System.Drawing.Point(150, 54);
             this.inPictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.inPictureBox1.MaximumSize = new System.Drawing.Size(512, 512);
             this.inPictureBox1.Name = "inPictureBox1";
-            this.inPictureBox1.Size = new System.Drawing.Size(512, 422);
-            this.inPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.inPictureBox1.Size = new System.Drawing.Size(512, 512);
+            this.inPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.inPictureBox1.TabIndex = 1;
             this.inPictureBox1.TabStop = false;
             this.inPictureBox1.Click += new System.EventHandler(this.inPictureBox1_Click);
             // 
             // outPictureBox2
             // 
+            this.outPictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.outPictureBox2.Location = new System.Drawing.Point(700, 54);
             this.outPictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.outPictureBox2.MaximumSize = new System.Drawing.Size(512, 512);
             this.outPictureBox2.Name = "outPictureBox2";
-            this.outPictureBox2.Size = new System.Drawing.Size(512, 422);
+            this.outPictureBox2.Size = new System.Drawing.Size(512, 512);
             this.outPictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.outPictureBox2.TabIndex = 2;
             this.outPictureBox2.TabStop = false;
@@ -102,10 +108,10 @@
             // 
             // ExcecuteButton
             // 
-            this.ExcecuteButton.Location = new System.Drawing.Point(25, 89);
+            this.ExcecuteButton.Location = new System.Drawing.Point(3, 89);
             this.ExcecuteButton.Margin = new System.Windows.Forms.Padding(4);
             this.ExcecuteButton.Name = "ExcecuteButton";
-            this.ExcecuteButton.Size = new System.Drawing.Size(116, 28);
+            this.ExcecuteButton.Size = new System.Drawing.Size(138, 28);
             this.ExcecuteButton.TabIndex = 3;
             this.ExcecuteButton.Text = "Execute";
             this.ExcecuteButton.UseVisualStyleBackColor = true;
@@ -118,7 +124,7 @@
             this.openToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1259, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1242, 28);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -127,6 +133,7 @@
             this.openToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
             this.closeToolStripMenuItem,
+            this.excecuteToolStripMenuItem,
             this.morfologicToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.openToolStripMenuItem1.Name = "openToolStripMenuItem1";
@@ -138,12 +145,14 @@
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
             this.closeToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.closeToolStripMenuItem.Text = "Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
             // morfologicToolStripMenuItem
             // 
@@ -159,53 +168,39 @@
             // erodeToolStripMenuItem
             // 
             this.erodeToolStripMenuItem.Name = "erodeToolStripMenuItem";
-            this.erodeToolStripMenuItem.Size = new System.Drawing.Size(169, 26);
+            this.erodeToolStripMenuItem.Size = new System.Drawing.Size(192, 26);
             this.erodeToolStripMenuItem.Text = "Erode";
             // 
             // erodeBorderToolStripMenuItem
             // 
             this.erodeBorderToolStripMenuItem.Name = "erodeBorderToolStripMenuItem";
-            this.erodeBorderToolStripMenuItem.Size = new System.Drawing.Size(169, 26);
-            this.erodeBorderToolStripMenuItem.Text = "ErodeBorder";
+            this.erodeBorderToolStripMenuItem.Size = new System.Drawing.Size(192, 26);
+            this.erodeBorderToolStripMenuItem.Text = "Erode3x3Border";
             // 
             // dilateToolStripMenuItem
             // 
             this.dilateToolStripMenuItem.Name = "dilateToolStripMenuItem";
-            this.dilateToolStripMenuItem.Size = new System.Drawing.Size(169, 26);
+            this.dilateToolStripMenuItem.Size = new System.Drawing.Size(192, 26);
             this.dilateToolStripMenuItem.Text = "Dilate";
             // 
             // dilateBorderToolStripMenuItem
             // 
             this.dilateBorderToolStripMenuItem.Name = "dilateBorderToolStripMenuItem";
-            this.dilateBorderToolStripMenuItem.Size = new System.Drawing.Size(169, 26);
-            this.dilateBorderToolStripMenuItem.Text = "DilateBorder";
+            this.dilateBorderToolStripMenuItem.Size = new System.Drawing.Size(192, 26);
+            this.dilateBorderToolStripMenuItem.Text = "Dilate3x3Border";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.exitToolStripMenuItem.Text = "Exit";
-            // 
-            // MorfListBox
-            // 
-            this.MorfListBox.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.MorfListBox.FormattingEnabled = true;
-            this.MorfListBox.Items.AddRange(new object[] {
-            "Erode",
-            "ErodeBorder",
-            "Dilate",
-            "DIlateBorder"});
-            this.MorfListBox.Location = new System.Drawing.Point(25, 122);
-            this.MorfListBox.Name = "MorfListBox";
-            this.MorfListBox.Size = new System.Drawing.Size(117, 106);
-            this.MorfListBox.TabIndex = 7;
-            this.MorfListBox.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(25, 234);
+            this.SaveButton.Location = new System.Drawing.Point(3, 124);
             this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(116, 28);
+            this.SaveButton.Size = new System.Drawing.Size(138, 28);
             this.SaveButton.TabIndex = 10;
             this.SaveButton.Text = "Save";
             this.SaveButton.UseVisualStyleBackColor = true;
@@ -213,16 +208,16 @@
             // 
             // iterNumberTextBox
             // 
-            this.iterNumberTextBox.Location = new System.Drawing.Point(25, 268);
+            this.iterNumberTextBox.Location = new System.Drawing.Point(3, 158);
             this.iterNumberTextBox.Name = "iterNumberTextBox";
-            this.iterNumberTextBox.Size = new System.Drawing.Size(116, 22);
+            this.iterNumberTextBox.Size = new System.Drawing.Size(138, 22);
             this.iterNumberTextBox.TabIndex = 11;
             this.iterNumberTextBox.TextChanged += new System.EventHandler(this.iterNumberTextBox1_TextChanged);
             // 
             // label
             // 
             this.label.AutoSize = true;
-            this.label.Location = new System.Drawing.Point(38, 293);
+            this.label.Location = new System.Drawing.Point(27, 183);
             this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(91, 17);
             this.label.TabIndex = 16;
@@ -234,10 +229,10 @@
             this.radioButton1.AutoSize = true;
             this.radioButton1.Location = new System.Drawing.Point(3, 3);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(63, 21);
+            this.radioButton1.Size = new System.Drawing.Size(67, 21);
             this.radioButton1.TabIndex = 18;
             this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "None";
+            this.radioButton1.Text = "Erode";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // radioButton2
@@ -245,10 +240,10 @@
             this.radioButton2.AutoSize = true;
             this.radioButton2.Location = new System.Drawing.Point(3, 30);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(85, 21);
+            this.radioButton2.Size = new System.Drawing.Size(132, 21);
             this.radioButton2.TabIndex = 19;
             this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Constant";
+            this.radioButton2.Text = "Erode3x3Border";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // radioButton3
@@ -256,10 +251,10 @@
             this.radioButton3.AutoSize = true;
             this.radioButton3.Location = new System.Drawing.Point(3, 57);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(88, 21);
+            this.radioButton3.Size = new System.Drawing.Size(65, 21);
             this.radioButton3.TabIndex = 20;
             this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Replicate";
+            this.radioButton3.Text = "Dilate";
             this.radioButton3.UseVisualStyleBackColor = true;
             // 
             // radioButton4
@@ -267,47 +262,92 @@
             this.radioButton4.AutoSize = true;
             this.radioButton4.Location = new System.Drawing.Point(3, 84);
             this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(63, 21);
+            this.radioButton4.Size = new System.Drawing.Size(130, 21);
             this.radioButton4.TabIndex = 21;
             this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Wrap";
+            this.radioButton4.Text = "Dilate3x3Border";
             this.radioButton4.UseVisualStyleBackColor = true;
-            // 
-            // radioButton5
-            // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(3, 111);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(66, 21);
-            this.radioButton5.TabIndex = 22;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "Mirror";
-            this.radioButton5.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.panel1.Controls.Add(this.radioButton1);
-            this.panel1.Controls.Add(this.radioButton5);
             this.panel1.Controls.Add(this.radioButton2);
             this.panel1.Controls.Add(this.radioButton4);
             this.panel1.Controls.Add(this.radioButton3);
-            this.panel1.Location = new System.Drawing.Point(25, 313);
+            this.panel1.Location = new System.Drawing.Point(3, 203);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(117, 137);
+            this.panel1.Size = new System.Drawing.Size(138, 112);
             this.panel1.TabIndex = 23;
+            // 
+            // excecuteToolStripMenuItem
+            // 
+            this.excecuteToolStripMenuItem.Name = "excecuteToolStripMenuItem";
+            this.excecuteToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.excecuteToolStripMenuItem.Text = "Excecute";
+            this.excecuteToolStripMenuItem.Click += new System.EventHandler(this.excecuteToolStripMenuItem_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(624, 570);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 17);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "0 x 0";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(1174, 570);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 17);
+            this.label2.TabIndex = 25;
+            this.label2.Text = "0 x 0";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(424, 570);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(141, 17);
+            this.label3.TabIndex = 26;
+            this.label3.Text = "Image WIdth x Height";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(974, 570);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(141, 17);
+            this.label4.TabIndex = 27;
+            this.label4.Text = "Image WIdth x Height";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(27, 318);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(96, 17);
+            this.label5.TabIndex = 28;
+            this.label5.Text = "Set Operation";
             // 
             // MainWIndow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1259, 649);
+            this.ClientSize = new System.Drawing.Size(1242, 596);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label);
             this.Controls.Add(this.iterNumberTextBox);
             this.Controls.Add(this.SaveButton);
-            this.Controls.Add(this.MorfListBox);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.ExcecuteButton);
             this.Controls.Add(this.outPictureBox2);
@@ -339,7 +379,6 @@
         private System.Windows.Forms.Button ExcecuteButton;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem1;
-        private System.Windows.Forms.CheckedListBox MorfListBox;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.TextBox iterNumberTextBox;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
@@ -355,8 +394,13 @@
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton5;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ToolStripMenuItem excecuteToolStripMenuItem;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }
 
