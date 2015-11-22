@@ -32,16 +32,11 @@ namespace CudaForms
                 try
                 {
                     Bitmap map = new Bitmap(s.FileName);
-                    label.Text = map.Width.ToString() + "x" + map.Height.ToString();
+                    SetTextSize(this.label1, map);
                     
                     if (map != null)
                     {
-                        // TODO: size od pictureBox need be set based on size of the main window
                         inPictureBox1.Image = map;
-                        //pictureBox1.Size = map.Size;
-                        //outPictureBox2.Location = new Point(inPictureBox1.Location.X + map.Size.Width + 10, 
-                        //    inPictureBox1.Location.Y + map.Size.Height + 10);
-                        //outPictureBox2.Size = map.Size;
                     }
                     else
                     {
@@ -57,59 +52,33 @@ namespace CudaForms
 
         private void button2_Click(object sender, EventArgs e)
         {
-
-            // to co trzeba zrobic
-            //ManagedCuda.NPP.NPPNativeMethods.NPPi.MorphologyFilter2D.nppiDilate_16u_C1R(map, 10, map, 10, 3, 1, 1, 1);
-
             try
             {
                 Bitmap map = new Bitmap (inPictureBox1.Image);
+
+                SetTextSize(this.label1, map);
+
                 if (map != null)
                 {
-                    inPictureBox1.Image = null;
-                    inPictureBox1.Image = map;
+                    if (EroderadioButton1.Checked)
+                    {
+                        this.Erode3x3(sender, e, map, iterNumberTextBox);
+                    }
 
-                    NppiSize size = new NppiSize(map.Width, map.Height);
+                    if (Erode3x3radioButton2.Checked)
+                    {
+                        this.Erode3x3Border(sender, e, map);
+                    }
 
-                    ManagedCuda.NPP.NPPImage_8uC3 source = new NPPImage_8uC3(size);
-                    ManagedCuda.NPP.NPPImage_8uC3 dest = new NPPImage_8uC3(size);
+                    if (DilateradioButton3.Checked)
+                    {
+                        this.Dilate3x3(sender, e, map);
+                    }
 
-                    source.CopyToDevice(map);
-
-                    /*
-                    //erode
-                    source.Erode3x3(dest);
-                    Bitmap mapd1 = new Bitmap(map.Width,map.Height);
-                    dest.CopyToHost(mapd1);
-                    outPictureBox2.Image = mapd1;
-                    mapd1.Save("Eroded");
-                     * */
-
-                    /*
-                    source.Erode3x3Border(dest, NppiBorderType.Replicate);
-                    Bitmap mapd2 = new Bitmap(map.Width, map.Height);
-                    dest.CopyToHost(mapd2);
-                    outPictureBox2.Image = mapd2;
-                    mapd2.Save("ErodedBOrder");
-                     * */
-
-                    /*
-                    source.Dilate3x3(dest);
-                    Bitmap mapd2 = new Bitmap(map.Width, map.Height);
-                    dest.CopyToHost(mapd2);
-                    outPictureBox2.Image = mapd2;
-                    mapd2.Save("DIlate");
-                    */
-
-                    
-                    source.Dilate3x3Border(dest, NppiBorderType.Replicate);
-                    Bitmap mapd2 = new Bitmap(map.Width, map.Height);
-                    dest.CopyToHost(mapd2);
-                    outPictureBox2.Image = mapd2;
-                    label.Text = mapd2.Width.ToString() + " xx " + mapd2.Height.ToString();
-                    label.Text = source.SizeRoi.ToString();
-                    mapd2.Save("DIlateBorder.jpg");
-                    
+                    if (Dilate3x3radioButton4.Checked)
+                    {
+                        this.Dilate3x3Border(sender, e, map);
+                    }
 
                     ///////////////////////////////////////////////////////////////////////////////////////////////
                     //still got exceptions
@@ -128,27 +97,6 @@ namespace CudaForms
                      * */
                     ///////////////////////////////////////////////////////////////////////////////////////////////
                     
-
-                    //EXAMPLE
-                    /*
-                        //Load an image
-                        Bitmap bmp = new Bitmap(map.Width, map.Height);
-                        bmp = map;
-
-                        //Alloc device memory using NPP images
-                        NPPImage_8uC3 bmp_d = new NPPImage_8uC3(bmp.Width, bmp.Height);
-                        NPPImage_8uC3 bmpDest_d = new NPPImage_8uC3(bmp.Width, bmp.Height);
-
-                        //Copy image to GPU
-                        bmp_d.CopyToDevice(bmp);
-                        //Run a NPP function
-                        bmp_d.FilterGaussBorder(bmpDest_d, MaskSize.Size_5_X_5, NppiBorderType.Replicate);
-                        //Copy result back to host
-                        bmpDest_d.CopyToHost(mapd);
-                        outPictureBox2.Image = mapd;
-                        //Use the result
-                        bmp.Save("niceImageFiltered.png");
-                    */
                 }
             }
             catch (System.BadImageFormatException ex)
@@ -159,51 +107,44 @@ namespace CudaForms
             {
                 MessageBox.Show(ex.Message);
             }
-
-            //ManagedCuda.NPP.NPPNativeMethods.NPPi.MorphologyFilter2D.nppiDilate_16u_C1R(test., 10, test, 10, 3, 1, 1, 1);
         }
 
         private void inPictureBox1_Click(object sender, EventArgs e)
         {
             //Show full size image
+            Form frm = new Form();
+            PictureBox pb = new PictureBox();
+            pb.Image = this.inPictureBox1.Image;
+            pb.Dock = DockStyle.Fill;
+            frm.Controls.Add(pb);
+            frm.WindowState = FormWindowState.Maximized;
+            frm.ShowDialog();
         }
 
         private void outPictureBox2_Click(object sender, EventArgs e)
         {
             //Show full size image
-        }
-
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void morfComboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //every selected morf oper should be run
-        }
-
-        private void inComboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //show list of previously selected image
-        }
-
-        private void outComboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //show list of previously morfed image
+            Form frm = new Form();
+            PictureBox pb = new PictureBox();
+            pb.Image = this.outPictureBox2.Image;
+            pb.Dock = DockStyle.Fill;
+            frm.Controls.Add(pb);
+            frm.WindowState = FormWindowState.Maximized;
+            frm.ShowDialog();
         }
 
         private void Save_Click(object sender, EventArgs e)
         {
-            //exceptions
-            //add messageBox wiht succes info
-            this.outPictureBox2.Image.Save(DateTime.Now.ToString() + "png");
-        }
-
-        private void iterNumberTextBox1_TextChanged(object sender, EventArgs e)
-        {
-            //set number of iteration
-            //default 1
+            //add time to sava name
+            try
+            {
+                this.outPictureBox2.Image.Save("test1.jpeg");
+                MessageBox.Show("Save succesful");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "Save failed");
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -230,6 +171,173 @@ namespace CudaForms
         {
             this.inPictureBox1.Image = null;
             this.outPictureBox2.Image = null;
+        }
+
+        private void Erode3x3(object sender, EventArgs e, Bitmap map, TextBox Iterations)
+        {
+            UInt32 iterations = 1;
+
+            try
+            {
+                iterations = Convert.ToUInt32(Iterations.Text);
+            }
+            catch (Exception ex)
+            {
+                iterations = 1;
+            }
+
+            ManagedCuda.NPP.NPPImage_8uC3 source = new NPPImage_8uC3(CudaHelper(map));
+            ManagedCuda.NPP.NPPImage_8uC3 dest = new NPPImage_8uC3(source.Size);
+
+            source.Erode3x3(dest);
+
+            Bitmap destMap = new Bitmap(map.Width, map.Height);
+            dest.CopyToHost(destMap);
+            outPictureBox2.Image = destMap;
+
+            SetTextSize(this.label2, destMap);
+        }
+
+        private void Erode3x3Border(object sender, EventArgs e, Bitmap map)
+        {
+            ManagedCuda.NPP.NPPImage_8uC3 source = new NPPImage_8uC3(CudaHelper(map));
+            ManagedCuda.NPP.NPPImage_8uC3 dest = new NPPImage_8uC3(source.Size);
+
+            source.Erode3x3Border(dest, NppiBorderType.Replicate);
+
+            Bitmap destMap = new Bitmap(map.Width, map.Height);
+            dest.CopyToHost(destMap);
+            outPictureBox2.Image = destMap;
+
+            SetTextSize(this.label2, destMap);
+        }
+
+        private void Dilate3x3(object sender, EventArgs e, Bitmap map)
+        {
+            ManagedCuda.NPP.NPPImage_8uC3 source = new NPPImage_8uC3(CudaHelper(map));
+            ManagedCuda.NPP.NPPImage_8uC3 dest = new NPPImage_8uC3(source.Size);
+
+            source.Dilate3x3Border(dest, NppiBorderType.Replicate);
+
+            Bitmap destMap = new Bitmap(map.Width, map.Height);
+            dest.CopyToHost(destMap);
+            outPictureBox2.Image = destMap;
+
+            SetTextSize(this.label2, destMap);
+        }
+
+        private void Dilate3x3Border(object sender, EventArgs e, Bitmap map)
+        {
+            ManagedCuda.NPP.NPPImage_8uC3 source = new NPPImage_8uC3(CudaHelper(map));
+            ManagedCuda.NPP.NPPImage_8uC3 dest = new NPPImage_8uC3(source.Size);
+
+            source.Dilate3x3(dest);
+
+            Bitmap destMap = new Bitmap(map.Width, map.Height);
+            dest.CopyToHost(destMap);
+            outPictureBox2.Image = destMap;
+
+            SetTextSize(this.label2, destMap);
+        }
+
+        private ManagedCuda.NPP.NPPImage_8uC3 CudaHelper(Bitmap map)
+        {
+            NppiSize size = new NppiSize(map.Width, map.Height);
+
+            ManagedCuda.NPP.NPPImage_8uC3 source = new NPPImage_8uC3(size);
+            
+            source.CopyToDevice(map);
+
+            return source;
+        }
+
+        private void SetTextSize(Label label, Bitmap destMap)
+        {
+            label.Text = destMap.Width.ToString() + " xx " + destMap.Height.ToString();
+        }
+
+        private void erodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Bitmap map = new Bitmap(inPictureBox1.Image);
+
+                if (map != null)
+                {
+                    this.Erode3x3(sender, e, map, iterNumberTextBox);
+                }
+            }
+            catch (System.BadImageFormatException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void erodeBorderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Bitmap map = new Bitmap(inPictureBox1.Image);
+
+                if (map != null)
+                {
+                    this.Erode3x3Border(sender, e, map);
+                }
+            }
+            catch (System.BadImageFormatException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void dilateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Bitmap map = new Bitmap(inPictureBox1.Image);
+
+                if (map != null)
+                {
+                    this.Dilate3x3(sender, e, map);
+                }
+            }
+            catch (System.BadImageFormatException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void dilateBorderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Bitmap map = new Bitmap(inPictureBox1.Image);
+
+                if (map != null)
+                {
+                    this.Dilate3x3Border(sender, e, map);
+                }
+            }
+            catch (System.BadImageFormatException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
