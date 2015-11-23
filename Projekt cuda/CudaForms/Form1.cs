@@ -111,26 +111,45 @@ namespace CudaForms
 
         private void inPictureBox1_Click(object sender, EventArgs e)
         {
-            //Show full size image
-            Form frm = new Form();
-            PictureBox pb = new PictureBox();
-            pb.Image = this.inPictureBox1.Image;
-            pb.Dock = DockStyle.Fill;
-            frm.Controls.Add(pb);
-            frm.WindowState = FormWindowState.Maximized;
-            frm.ShowDialog();
+            try
+            {
+                //Show full size image
+                Form frm = new Form();
+                PictureBox pb = new PictureBox();
+                pb.Image = this.inPictureBox1.Image;
+                pb.Dock = DockStyle.Fill;
+                frm.Controls.Add(pb);
+                frm.WindowState = FormWindowState.Normal;
+                frm.Width = this.inPictureBox1.Image.Width;
+                frm.Height = this.inPictureBox1.Image.Height;
+                frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
         private void outPictureBox2_Click(object sender, EventArgs e)
         {
-            //Show full size image
-            Form frm = new Form();
-            PictureBox pb = new PictureBox();
-            pb.Image = this.outPictureBox2.Image;
-            pb.Dock = DockStyle.Fill;
-            frm.Controls.Add(pb);
-            frm.WindowState = FormWindowState.Maximized;
-            frm.ShowDialog();
+            try
+            {
+                //Show full size image
+                Form frm = new Form();
+                PictureBox pb = new PictureBox();
+                pb.Image = this.outPictureBox2.Image;
+                pb.Dock = DockStyle.Fill;
+                frm.Controls.Add(pb);
+                frm.WindowState = FormWindowState.Normal;
+                frm.Width = this.inPictureBox1.Image.Width;
+                frm.Height = this.inPictureBox1.Image.Height;
+                frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void Save_Click(object sender, EventArgs e)
