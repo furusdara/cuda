@@ -236,7 +236,7 @@ namespace CudaForms
             ManagedCuda.NPP.NPPImage_8uC3 source = new NPPImage_8uC3(CudaHelper(map));
             ManagedCuda.NPP.NPPImage_8uC3 dest = new NPPImage_8uC3(source.Size);
 
-            source.Dilate3x3Border(dest, NppiBorderType.Replicate);
+            source.Dilate3x3(dest);
 
             Bitmap destMap = new Bitmap(map.Width, map.Height);
             dest.CopyToHost(destMap);
@@ -250,7 +250,7 @@ namespace CudaForms
             ManagedCuda.NPP.NPPImage_8uC3 source = new NPPImage_8uC3(CudaHelper(map));
             ManagedCuda.NPP.NPPImage_8uC3 dest = new NPPImage_8uC3(source.Size);
 
-            source.Dilate3x3(dest);
+            source.Dilate3x3Border(dest, NppiBorderType.Replicate);
 
             Bitmap destMap = new Bitmap(map.Width, map.Height);
             dest.CopyToHost(destMap);
