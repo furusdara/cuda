@@ -138,7 +138,7 @@ namespace CudaForms
             //add time to sava name
             try
             {
-                this.outPictureBox2.Image.Save("test1.jpeg");
+                this.outPictureBox2.Image.Save(DateTime.Now.ToString("yyyyMMdd_hhss") + ".jpeg");
                 MessageBox.Show("Save succesful");
             }
             catch (Exception ex)
