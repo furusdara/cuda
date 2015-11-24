@@ -232,7 +232,6 @@
             this.label.Size = new System.Drawing.Size(91, 17);
             this.label.TabIndex = 16;
             this.label.Text = "Set Iterations";
-            this.label.Click += new System.EventHandler(this.label1_Click);
             // 
             // EroderadioButton1
             // 

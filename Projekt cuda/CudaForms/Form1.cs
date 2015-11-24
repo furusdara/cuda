@@ -9,11 +9,27 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using ManagedCuda.NPP;
+using ManagedCuda;
 
 namespace CudaForms
 {
     public partial class MainWIndow : Form
     {
+        public int Iterations
+        {
+            get
+            {
+                try
+                {
+                    return Int32.Parse(this.iterNumberTextBox.Text);
+                }
+                catch
+                {
+                    return 1;
+                }
+            }
+        }
+
         public MainWIndow()
         {
             InitializeComponent();
@@ -62,41 +78,39 @@ namespace CudaForms
                 {
                     if (EroderadioButton1.Checked)
                     {
-                        this.Erode3x3(sender, e, map, iterNumberTextBox);
+                        try
+                        {
+                            this.Erode3x3(sender, e, map);
+                        }
+                        catch (CudaException ex) { }
                     }
 
                     if (Erode3x3radioButton2.Checked)
                     {
-                        this.Erode3x3Border(sender, e, map);
+                        try
+                        {
+                            this.Erode3x3Border(sender, e, map);
+                        }
+                        catch (CudaException ex) { }
                     }
 
                     if (DilateradioButton3.Checked)
                     {
-                        this.Dilate3x3(sender, e, map);
+                        try
+                        {
+                            this.Dilate3x3(sender, e, map);
+                        }
+                        catch (CudaException ex) { }
                     }
 
                     if (Dilate3x3radioButton4.Checked)
                     {
-                        this.Dilate3x3Border(sender, e, map);
+                        try
+                        {
+                            this.Dilate3x3Border(sender, e, map);
+                        }
+                        catch (CudaException ex){}
                     }
-
-                    ///////////////////////////////////////////////////////////////////////////////////////////////
-                    //still got exceptions
-                    /*
-                    ManagedCuda.CudaDeviceVariable<byte> test = new ManagedCuda.CudaDeviceVariable<byte>(256);
-                    NppiSize size1 = new NppiSize(map.Width, map.Height);
-                    NppiPoint point1 = new NppiPoint();
-                    source.DilateBorder(dest, test, size1, point1, NppiBorderType.Replicate);
-
-                    Bitmap mapd2 = new Bitmap(map.Width, map.Height);
-                    dest.CopyToHost(mapd2);
-                    outPictureBox2.Image = mapd2;
-                    label.Text = mapd2.Width.ToString() + " xx " + mapd2.Height.ToString();
-                    label.Text = source.SizeRoi.ToString();
-                    mapd2.Save("DIlateBorder.jpg");
-                     * */
-                    ///////////////////////////////////////////////////////////////////////////////////////////////
-                    
                 }
             }
             catch (System.BadImageFormatException ex)
@@ -127,8 +141,7 @@ namespace CudaForms
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-            
+            }  
         }
 
         private void outPictureBox2_Click(object sender, EventArgs e)
@@ -166,11 +179,6 @@ namespace CudaForms
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -192,23 +200,18 @@ namespace CudaForms
             this.outPictureBox2.Image = null;
         }
 
-        private void Erode3x3(object sender, EventArgs e, Bitmap map, TextBox Iterations)
+        private void Erode3x3(object sender, EventArgs e, Bitmap map)
         {
-            UInt32 iterations = 1;
+            ManagedCuda.NPP.NPPImage_8uC4 source = new NPPImage_8uC4(map.Width, map.Height);
+            source = CudaHelper(map);
+            ManagedCuda.NPP.NPPImage_8uC4 dest = new NPPImage_8uC4(source.Size);
 
-            try
+            Int32 iter = Iterations;
+            for (int i = 0; i < iter; i++)
             {
-                iterations = Convert.ToUInt32(Iterations.Text);
+                source.Erode3x3(dest);
+                source = dest;
             }
-            catch (Exception ex)
-            {
-                iterations = 1;
-            }
-
-            ManagedCuda.NPP.NPPImage_8uC3 source = new NPPImage_8uC3(CudaHelper(map));
-            ManagedCuda.NPP.NPPImage_8uC3 dest = new NPPImage_8uC3(source.Size);
-
-            source.Erode3x3(dest);
 
             Bitmap destMap = new Bitmap(map.Width, map.Height);
             dest.CopyToHost(destMap);
@@ -219,10 +222,16 @@ namespace CudaForms
 
         private void Erode3x3Border(object sender, EventArgs e, Bitmap map)
         {
-            ManagedCuda.NPP.NPPImage_8uC3 source = new NPPImage_8uC3(CudaHelper(map));
-            ManagedCuda.NPP.NPPImage_8uC3 dest = new NPPImage_8uC3(source.Size);
+            ManagedCuda.NPP.NPPImage_8uC4 source = new NPPImage_8uC4(map.Width, map.Height);
+            source = CudaHelper(map);
+            ManagedCuda.NPP.NPPImage_8uC4 dest = new NPPImage_8uC4(source.Size);
 
-            source.Erode3x3Border(dest, NppiBorderType.Replicate);
+            Int32 iter = Iterations;
+            for (int i = 0; i < iter; i++)
+            {
+                source.Erode3x3Border(dest, NppiBorderType.Replicate);
+                source = dest;
+            }
 
             Bitmap destMap = new Bitmap(map.Width, map.Height);
             dest.CopyToHost(destMap);
@@ -233,11 +242,16 @@ namespace CudaForms
 
         private void Dilate3x3(object sender, EventArgs e, Bitmap map)
         {
-            ManagedCuda.NPP.NPPImage_8uC3 source = new NPPImage_8uC3(CudaHelper(map));
-            ManagedCuda.NPP.NPPImage_8uC3 dest = new NPPImage_8uC3(source.Size);
+            ManagedCuda.NPP.NPPImage_8uC4 source = new NPPImage_8uC4(map.Width, map.Height);
+            source = CudaHelper(map);
+            ManagedCuda.NPP.NPPImage_8uC4 dest = new NPPImage_8uC4(source.Size);
 
-            source.Dilate3x3(dest);
-
+            Int32 iter = Iterations;
+            for (int i = 0; i < iter; i++)
+            {
+                source.Dilate3x3(dest);
+                source = dest;
+            }
             Bitmap destMap = new Bitmap(map.Width, map.Height);
             dest.CopyToHost(destMap);
             outPictureBox2.Image = destMap;
@@ -247,10 +261,16 @@ namespace CudaForms
 
         private void Dilate3x3Border(object sender, EventArgs e, Bitmap map)
         {
-            ManagedCuda.NPP.NPPImage_8uC3 source = new NPPImage_8uC3(CudaHelper(map));
-            ManagedCuda.NPP.NPPImage_8uC3 dest = new NPPImage_8uC3(source.Size);
+            ManagedCuda.NPP.NPPImage_8uC4 source = new NPPImage_8uC4(map.Width, map.Height);
+            source = CudaHelper(map);
+            ManagedCuda.NPP.NPPImage_8uC4 dest = new NPPImage_8uC4(source.Size);
 
-            source.Dilate3x3Border(dest, NppiBorderType.Replicate);
+            Int32 iter = Iterations;
+            for (int i = 0; i < iter; i++)
+            {
+                source.Dilate3x3Border(dest, NppiBorderType.Replicate);
+                source = dest;
+            }
 
             Bitmap destMap = new Bitmap(map.Width, map.Height);
             dest.CopyToHost(destMap);
@@ -259,11 +279,11 @@ namespace CudaForms
             SetTextSize(this.label2, destMap);
         }
 
-        private ManagedCuda.NPP.NPPImage_8uC3 CudaHelper(Bitmap map)
+        private ManagedCuda.NPP.NPPImage_8uC4 CudaHelper(Bitmap map)
         {
             NppiSize size = new NppiSize(map.Width, map.Height);
 
-            ManagedCuda.NPP.NPPImage_8uC3 source = new NPPImage_8uC3(size);
+            ManagedCuda.NPP.NPPImage_8uC4 source = new NPPImage_8uC4(size);
             
             source.CopyToDevice(map);
 
@@ -283,7 +303,7 @@ namespace CudaForms
 
                 if (map != null)
                 {
-                    this.Erode3x3(sender, e, map, iterNumberTextBox);
+                    this.Erode3x3(sender, e, map);
                 }
             }
             catch (System.BadImageFormatException ex)
